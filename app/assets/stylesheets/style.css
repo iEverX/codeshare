@@ -1,0 +1,29 @@
+/* From Jekyll */
+body { background-color: #eee; }
+.navbar { margin-bottom: 0px; }
+
+.content {
+  background-color: #fff;
+  padding: 20px;
+  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+}
+
+/* Page header tweaks */
+.page-header {
+  background-color: #f5f5f5;
+  padding: 20px 20px 10px;
+  margin: -20px -20px 20px;
+}
+
+footer { text-align: center; margin-top: 20px; }
+
+/* Style from Jekyll end */
+
+.share { font-size: 20px; }
+.navbar .share>li>a { color: #45b521; }
+.navbar .share>li>a:hover { color: #67d743; }
+
+.page-body { min-height: 400px; }
+
+.code-info { font-size: 16px; }
+.code-write { resize: vertical; }

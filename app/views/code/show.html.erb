@@ -1,0 +1,23 @@
+<div class="page-header">
+    <h1>CodeShare <small>Just share</small></h1>
+</div>
+<div class="row">
+    <div class="span12">
+        <div class="row">
+            <div class="span8">
+                <div class="show-code">
+                    <h2>Name</h2>
+                    <%= show_code(@code, 'ruby') %>
+                    
+                </div>
+                <hr />
+                <div class="comment">
+                    <%=markdown(@code3) %>
+                </div>
+            </div>
+            <div class="span4">
+                <h2>Code Contributer</h2>
+            </div>
+        </div>
+    </div>
+</div>

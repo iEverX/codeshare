@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CodeShare</title>
+  <%= stylesheet_link_tag 'bootstrap.min.css' %> 
+  <%= stylesheet_link_tag 'style.css' %>
+  
+</head>
+<body>
+    <div class="navbar" id="page-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="/">CodeShare</a>
+                <ul class="nav">
+                    <li><a href="#">Explore</a></li>
+                    <li><a href="#">Message</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+                <ul class="nav pull-right share"><li><a href="/share">Share Code</a></li></ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content">
+<%= yield %>
+        </div>
+        <footer>
+            <p>Powered By <a href="http://blog.EverCoding.net">Ever</a><p>
+            <p>using Ruby on Rails and Bootstrap</p>
+        </footer>
+    </div>
+</div>      
+</body>
+</html>
