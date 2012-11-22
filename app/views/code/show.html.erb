@@ -1,22 +1,38 @@
-<div class="page-header">
-    <h1>CodeShare <small>Just share</small></h1>
-</div>
 <div class="row">
     <div class="span12">
         <div class="row">
-            <div class="span8">
+            <div class="span12">
+                <% if @snippet %>
                 <div class="show-code">
-                    <h2>Name</h2>
-                    <%= show_code(@code, 'ruby') %>
+                    <h2><%= @snippet[:name] %></h2>
+                    <p><small>Description</small> <%= @snippet[:description] %></p>
+                    <p><small>Author</small> 
+                        <% if @code[:page] %>
+                        <%= link_to @code[:author], @code[:page] %>
+                        <% else %>
+                        <%= @code[:author] %>
+                        <% end %> 
+                    </p>
+                    <p><small>Version</small> <%= link_to @snippet[:version], versions_url(@code) %> 
+                    <p>
+                        <small>Updated At</small> <%= @code[:updated_at] %>
+                        <small>Created At</small> <%= @code[:created_at] %>
+                    </p>
+                    <%= show_code(@snippet[:source], @snippet[:language]) %>
                     
                 </div>
                 <hr />
                 <div class="comment">
-                    <%=markdown(@code3) %>
+
                 </div>
-            </div>
-            <div class="span4">
-                <h2>Code Contributer</h2>
+                <% else %>
+                    <% if params[:code_id] %>
+                    <h2>Sorry, code <%= params[:code_id] %> has no version <%= params[:id] %></h2>
+                    <% else %>
+                    <h2>Sorry, there's no code with id <%= params[:id] %></h2>
+                    <% end %>
+                <%= link_to "Back To Home", "/" %>
+                <% end %>
             </div>
         </div>
     </div>

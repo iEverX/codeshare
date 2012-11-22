@@ -1,12 +1,18 @@
 CodeShare::Application.routes.draw do
-  get "code/show"
 
-  get "home/index"
-
+  resources :codes
   root :to => 'home#index'
+  
   match "/share" => "code#share"
-  match "/show" => "code#show"
-  match "/show/:id" => "code#show"
+  match "/code/new" => "code#new"
+
+  match "/code/show/:id" => "code#show", :as => "show"
+
+  match "/code/:id/version" => "code#versions", :as => "versions"
+  match "/code/:code_id/v/:id" => "code#show_version", :as => "version_show"
+
+  match "/test" => "code#test"
+  
   
 end
   # The priority is based upon order of creation:

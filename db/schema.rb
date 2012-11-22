@@ -10,17 +10,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121121103759) do
+ActiveRecord::Schema.define(:version => 20121122081925) do
 
   create_table "codes", :force => true do |t|
-    t.string   "name",                       :null => false
+    t.string   "author",     :null => false
+    t.string   "page"
+    t.string   "email",      :null => false
+    t.string   "password",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "snippets", :force => true do |t|
+    t.integer  "code_id",                    :null => false
     t.string   "description",                :null => false
-    t.text     "snippet",                    :null => false
-    t.string   "author",                     :null => false
-    t.string   "password",                   :null => false
-    t.integer  "version",     :default => 1, :null => false
-    t.string   "commitmsg"
     t.string   "language",                   :null => false
+    t.string   "name",                       :null => false
+    t.integer  "version",     :default => 1, :null => false
+    t.text     "source",                     :null => false
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
   end

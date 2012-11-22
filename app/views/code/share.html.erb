@@ -1,36 +1,32 @@
-<div class="page-header">
-    <h1>CodeShare <small>Just share</small></h1>
-</div>
 <div class="row">
     <div class="span12">
-            <form action="post">
-                <div class="row">
-                    <div class="span7">
-                        <h2>The Code</h2>
-                        <input class="span7" type="text" placeholder="Description of the code" />
-                        <input class="span4" type="text" placeholder="Name this code" />
-                        <textarea class="code-write span7" rows="15" placeholder="Your code"></textarea>
-                    </div>
-                    <div class="span5">
-                        <span class="span5"><h2>The You</h2></span>
-                        <span class="span2">Email</span>
-                        <input class="span3" type="text" placeholder="Not null, won't be published" />
-                        <span class="span2">Page</span>
-                        <input class="span3" type="text" placeholder="Peronal Page (optional)" />
-                        <span class="span2">Password</span>
-                        <input class="span3" type="text" placeholder="To manage code" />
-                        <span class="span2">Password Again</span>
-                        <input class="span3" type="text" placeholder="Must be the same" />
-                        <p class="span4">
-                            <input class="btn-primary btn-large span2" type="submit" value="Commit" />
-                            <input class="btn-primary btn-large span2" type="reset" value="Reset" />
-                        </p>
-                    </div>
-                </div>
-                
-            </form>
-            
-            
+    <%= form_tag({:action=>"new", :controller=>"code"}, :name=>"code", :method=>"post", :multipart=>"true") do %>
+        <div class="row">
+            <div class="span7">
+                <h2>The Code</h2>
+                <%= text_field :snippet, :description, :class=>"span7", :placeholder=>"Description of the code" %>
+                <%= text_field :snippet, :name, :class=>"span4", :placeholder=>"Name this code" %>
+                <%= text_area :snippet, :source, :class=>"code-write span7", :placeholder=>"Your code", :rows=>"15" %>
+            </div>
+            <div class="span5">
+                <span class="span5"><h2>The You</h2></span>
+                <span class="span2">Nick</span>
+                <%= text_field :code, :author, :class=>"span3", :placeholder=>"Not null, just a nick" %>
+                <span class="span2">Email</span>
+                <%= text_field :code, :email, :class=>"span3", :placeholder=>"Not null, won't be published" %>
+                <span class="span2">Page</span>
+                <%= text_field :code, :page, :class=>"span3", :placeholder=>"Personal Page(optional)" %>
+                <span class="span2">Password</span>
+                <%= text_field :code, :password, :class=>"span3", :placeholder=>"To manage code" %>
+                <span class="span2">Password Again</span>
+                <%= text_field :cf, :cf,:class=>"span3", :placeholder=>"Must be the same" %>
+                <p class="span4">
+                    <input class="btn-primary btn-large span2" type="submit" value="Commit" />
+                    <input class="btn-primary btn-large span2" type="reset" value="Reset" />
+                </p>
+            </div>
+        </div>
+    <% end %>
     </div>
 </div>
 

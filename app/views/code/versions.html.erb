@@ -1,0 +1,36 @@
+<div class="row page-body">
+    <div class="span12">
+        <div class="row">
+            <div class="span8">
+                <div class="row">
+                    <% @snippets.reverse_each do |s| %>
+                    <div class="span1">
+                        <p class="version_tag">Version</p>
+                        <p class="version_number">
+                            <%= link_to s[:version], version_show_url(:code_id=>s[:code_id], :id=>s[:version]) %>
+                        </p>
+                    </div>
+                    <div class="span7">
+                        <p><small>Updated At</small> <%= s[:updated_at] %></p>
+                        <p><%= s[:name] %></p>
+                        <p><%= s[:description] %></p>
+                        <hr />
+                    </div>
+                    <% end %> 
+                </div>
+            </div>
+            <div class="span4">
+                <h2 class="info">Author Info</h2>
+                <p class="info">
+                    <% if @code[:page] %>
+                    <a href=<%= @code[:page] %>><%= gravatar_for @code[:author], :size=>48 %></a><br />
+                    <%= link_to @code[:author], @code[:page] %>
+                    <% else %>
+                    <%= gravatar_for @code[:author], :size=>48 %><br />
+                    <%= @code[:author] %>
+                    <% end %>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,6 +11,7 @@ gem 'json'
 
 gem 'redcarpet'
 gem 'coderay'
+gem 'gravatar-ultimate'
 
 # Gems used only for assets and not required
 # in production environments by default.
