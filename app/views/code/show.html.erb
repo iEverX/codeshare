@@ -5,15 +5,20 @@
                 <% if @snippet %>
                 <div class="show-code">
                     <h2><%= @snippet[:name] %></h2>
+                    <% if !params[:code_id] %>
+                        <span class="edit_link"><%= link_to "Edit", edit_url(params[:id]) %></span>
+                    <% end %>
                     <p><small>Description</small> <%= @snippet[:description] %></p>
                     <p><small>Author</small> 
                         <% if @code[:page] %>
                         <%= link_to @code[:author], @code[:page] %>
                         <% else %>
                         <%= @code[:author] %>
-                        <% end %> 
+                        <% end %>
+                        <span class="version">
+                            <small>Version</small> <%= link_to @snippet[:version], versions_url(@code) %>
+                        </span> 
                     </p>
-                    <p><small>Version</small> <%= link_to @snippet[:version], versions_url(@code) %> 
                     <p>
                         <small>Updated At</small> <%= @code[:updated_at] %>
                         <small>Created At</small> <%= @code[:created_at] %>
@@ -23,7 +28,49 @@
                 </div>
                 <hr />
                 <div class="comment">
+                    <h2>Comments</h2>
+                    <div class="row">
+                        <div class="span7">
+                            <% if @comments %>
+                                <% @comments.each_with_index do |c, index| %>
+                                    <p>
+                                        <%= gravatar_for c[:nick], :size=>16 %>
+                                        <% if c[:page] %>
+                                            <%= link_to c[:nick], c[:page] %>
+                                        <% else %>
+                                            <%= c[:nick] %>
+                                        <% end %>
+                                        <span class="comment_lev pull-right">#<%= index + 1 %></span>
+                                    </p>
+                                    <p>
+                                        <small>Post at</small> <%= c[:created_at] %> <br />
+                                    </p>
+                                    <p class="comment_content"><%= c[:content] %></p>
+                                    <hr />
+                                <% end %>
+                            <% else %>
+                            <p>There's no any comments yet</p>
+                            <% end %>
+                        </div>
+                        <div class="span5">
+                            <%= form_tag({:action=>"new", :controller=>"comment", :id=>params[:id]}, :name=>"comment", :method=>"post", :multipart=>"true") do %>
+                                <%= label_tag :comment_email, "Email" %>
+                                <%= text_field :comment, :email, :class=>"span3", :placeholder=>"Not null" %>
+                                <%= label_tag :comment_nick, "Nick" %>
+                                <%= text_field :comment, :nick, :class=>"span3", :placeholder=>"Not null" %>
+                                <%= label_tag :comment_page, "Page"%>
+                                <%= text_field :comment, :page, :class=>"span3", :placeholder=>"Personal Page" %>
+                                <%= label_tag :comment_content, "Content" %>
+                                <%= text_area :comment, :content, :class=>"span5", :rows=>5, :placeholder=>"Not null" %>
+                                <p class="span4">
+                                    <input type="submit" class="btn-primary span2" value="Submit" />
+                                    <input type="reset" class="btn-primary span2" value="Reset" />
+                                </p>
+                            <% end %>
+                        </div>
+                    </div>
 
+                    
                 </div>
                 <% else %>
                     <% if params[:code_id] %>

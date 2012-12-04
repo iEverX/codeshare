@@ -3,21 +3,35 @@
         <div class="row">
             <div class="span4">
                 <h2>The latest code</h2>
-                <% @latest.each do |code| %>
                 <div class="row">
-                    <div class="span1"><%= link_to code[:id], show_url(code[:id]) %></div>
-                    <div class="span3"><%= code[:description] %></div>
+                    <div class="span1">Code Id</div>
+                    <div class="span3">Code Description</div>
+                </div>
+                <% @latest.each do |snippet| %>
+                <hr class="index_hr" />
+                <div class="row">
+                    <div class="span1"><%= link_to snippet[:code_id], show_url(snippet[:code_id]) %></div>
+                    <div class="span3"><%= snippet[:description] %></div>
                 </div>
                 <% end %>
-
+                </hr />
             </div>
             <div class="span5">
                 <h2>The hottest code</h2>
                 <div class="row">
-                    <div class="span1">coutn</div>
-                    <div class="span1">name</div>
+                    <div class="span1">Code Id</div>
+                    <div class="span1">Comments</div>
                     <div class="span3">descrition</div>
                 </div>
+                <% @hottest.each do |snippet, comment_count| %>
+                <hr class="index_hr" />
+                <div class="row">
+                    <div class="span1"><%= link_to snippet[:code_id], show_url(snippet[:code_id]) %></div>
+                    <div class="span1"><%= comment_count %></div>
+                    <div class="span3"><%= snippet[:description] %></div>
+                </div>
+                <% end %>
+                </hr />
             </div>
             <div class="span3">
                 <form action="code/show" method="post" class="form-inline">

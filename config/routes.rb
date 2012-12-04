@@ -3,6 +3,8 @@ CodeShare::Application.routes.draw do
   resources :codes
   root :to => 'home#index'
   
+  match "/about" => "home#about"
+
   match "/share" => "code#share"
   match "/code/new" => "code#new"
 
@@ -10,6 +12,9 @@ CodeShare::Application.routes.draw do
 
   match "/code/:id/version" => "code#versions", :as => "versions"
   match "/code/:code_id/v/:id" => "code#show_version", :as => "version_show"
+
+  match "/comment/new/:id" => "comment#new"
+  match "/code/edit/:id" => "code#edit", :as => "edit"
 
   match "/test" => "code#test"
   

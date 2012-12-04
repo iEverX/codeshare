@@ -10,13 +10,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121122081925) do
+ActiveRecord::Schema.define(:version => 20121126062208) do
 
   create_table "codes", :force => true do |t|
     t.string   "author",     :null => false
     t.string   "page"
     t.string   "email",      :null => false
     t.string   "password",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "code_id",    :null => false
+    t.string   "email",      :null => false
+    t.string   "nick",       :null => false
+    t.string   "page"
+    t.text     "content",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

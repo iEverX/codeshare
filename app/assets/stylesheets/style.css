@@ -34,6 +34,12 @@ footer { text-align: center; margin-top: 20px; }
 
 .info { text-align: center; }
 
+.edit_link a { font-size: 18px; }
+.version { padding: 0 15px; }
 .version_tag { text-align: center; font-size: 20px; }
-
 .version_number { text-align: center; font-size: 40px; color: #aaa; line-height: 50px; }
+
+.comment_content { background-color: #ffffbb; border: 1px solid #eee; padding: 10px; font-size: 14px; }
+.comment_lev { padding-right: 50px; color: rgba(70, 180, 30, 0.8); font-size: 16px; }
+
+.index_hr { margin: 5px 0; }

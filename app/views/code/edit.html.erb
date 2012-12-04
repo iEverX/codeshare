@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="span12">
+    <%= form_tag({:action=>"new", :controller=>"code"}, :name=>"code", :method=>"post", :multipart=>"true") do %>
+        <div class="row">
+            <div class="span7">
+                <h2>The Code</h2>
+                <%= text_field :snippet, :description, :class=>"span7", :placeholder=>"Description of the code" %>
+                <%= text_field :snippet, :name, :class=>"span4", :placeholder=>"Name this code" %>
+                <%= text_area :snippet, :source, :class=>"code-write span7", :placeholder=>"Your code", :rows=>"15" %>
+            </div>
+        </div>
+    <% end %>
+    </div>
+</div>

@@ -9,6 +9,7 @@ class CodeController < ApplicationController
     begin 
       @code = Code.find(params[:id])
       @snippet = Snippet.where(:code_id => @code[:id]).last
+      @comments = Comment.where(:code_id => @code[:id])
     rescue ActiveRecord::RecordNotFound
     end
   end
@@ -44,15 +45,17 @@ class CodeController < ApplicationController
     begin
       @code = Code.find(params[:code_id])
       @snippet = Snippet.where(:code_id => @code[:id], :version => params[:id])[0]
+      @comments = Comment.where(:code_id => @code[:id])
     rescue ActiveRecord::RecordNotFound
     end
-    puts "*******************************************" 
-    puts params[:code_id]
-    puts "*******************************************" 
     render :show
   end
 
   def edit
+    @snippet = Snippet.new
+    @snippet[:description] = "Hello, World"
+    @snippet[:name] = "Name"
+    @snippet[:source] = "puts "
   end
 
   def delete
