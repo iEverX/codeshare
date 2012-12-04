@@ -17,14 +17,22 @@ module CodeHelper
     code = Code.new
     code[:author] = params[:author]
     code[:email] = params[:email]
-    code[:page] = params[:page]
     code[:password] = encrypt(params[:password])
+
+    if params[:page] != "" && params[:page] != nil
+      if params[:page] =~ /http:\/\//
+        code[:page] = params[:page]
+      else
+        code[:page] = "http://#{params[:page]}"
+      end
+    end
+    
     code
   end
 
-  def get_snippet(params, code, version=1)
+  def get_snippet(params, code_id, version=1)
     snippet = Snippet.new
-    snippet[:code_id] = code[:id]
+    snippet[:code_id] = code_id
     snippet[:description] = params[:description]
     snippet[:name] = params[:name]
     snippet[:source] = params[:source]

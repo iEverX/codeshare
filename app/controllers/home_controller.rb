@@ -1,21 +1,11 @@
 class HomeController < ApplicationController
   def index
-    # @latest = Code.order('updated_at desc').limit(10)
-    # @latest = Code.order('updated_at desc').limit(10).join()
-    # @latest = Code.where(:id=>10).joins(:snippets)
-    # @latest = Code.where(:id=>10).joins('JOIN snippets ON snippets.code_id = codes.id')
-    # # @snip = Snippet.where(:code_id=>10)
-    @latest = Snippet.order('updated_at desc').limit(10)
+    snippets = Snippet.order('id desc').select(:code_id).uniq.limit(10)
 
-
-    snippets = Snippet.order('updated_at desc').select(:code_id).uniq.limit(10)
     @latest = []
     snippets.each do |snippet| 
-      @latest.append Snippet.where(:code_id=>snippet[:code_id]).order('id desc').first
+      @latest.append Snippet.where(:code_id=>snippet[:code_id]).order('id desc').last
     end
-
-    # comments = Comment.where(:code_id=>10).count
-    comments = Comment.count(:code_id)
 
     code_comment = Hash.new(0)
     Comment.all.each do |comment|
@@ -23,11 +13,21 @@ class HomeController < ApplicationController
     end
     code_comment = code_comment.sort { |x ,y| ((y[1] <=> x[1]) << 1) + (y[0] <=> x[0]) }
     @hottest = []
-    code_comment.each { |k, v| @hottest.append( [Snippet.where(:code_id=>k).first, v] )}
+    code_comment.each { |k, v| @hottest.append([Snippet.where(:code_id=>k).first, v])}
+  end
 
-    puts "++++++++++++++++++++++++++++++++"
-    code_comment
-    puts "++++++++++++++++++++++++++++++++"
+  def list
+    snippets = Snippet.order('created_at desc').select('code_id').uniq
+    @codes = []
+    snippets.each do |snippet|
+      code = []
+      code.append(Snippet.where(:code_id=>snippet[:code_id]).last)
+      code.append(Code.where(:id=>snippet[:code_id]).first)
+      @codes.append(code)
+    end
+
+    puts "kkkkkkkkkkkkkkkkkkkkkkkk", @codes, "DDDDDDDDDDDDDDDDDDDDDDDDDDDDd"
+    puts @codes[0][0][:description]
 
   end
 

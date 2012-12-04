@@ -14,11 +14,17 @@
             <div class="container">
                 <a class="brand" href="/">CodeShare</a>
                 <ul class="nav">
-                    <li><a href="#">Explore</a></li>
-                    <li><a href="#">Message</a></li>
+                    <li><a href="/list">List</a></li>
                     <li><a href="/about">About</a></li>
                 </ul>
                 <ul class="nav pull-right share"><li><a href="/share">Share Code</a></li></ul>
+                <ul class="nav pull-right">
+                    <li>                
+                        <form action="/code/show" method="post" class="navbar-search">
+                            <input class="search-query" name="id" type="text" placeholder="The id to view" />
+                        </form>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

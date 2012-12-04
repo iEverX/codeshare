@@ -3,6 +3,7 @@ class CodeController < ApplicationController
 
   def share
     @code = Code.new
+    @snippet = Snippet.new
   end
 
   def show
@@ -15,21 +16,21 @@ class CodeController < ApplicationController
   end
 
   def new
-    if params[:code][:password] != params[:cf][:cf] then
-      render :action => :share, :code => params[:code]
+    if params[:code][:password] == "" || params[:code][:password] == nil
+      render :action => :share, :code => params[:code], :snippet => params[:snippet]
       return
     end
     @code = get_code(params[:code])
-    if @code.save!
-      @snippet = get_snippet(params[:snippet], @code)
+    if @code.save
+      @snippet = get_snippet(params[:snippet], @code[:id])
     else
-      redirect_to "/code/share"
+      render :action => :share, :code => params[:code], :snippet => params[:snippet]
       return
     end
-    if @snippet.save!
+    if @snippet.save
       redirect_to "/code/show/#{@code[:id]}"
     else
-      redirect_to "/code/share"
+      render :action => :share, :code => params[:code], :snippet => params[:snippet]
     end
   end
 
@@ -52,17 +53,19 @@ class CodeController < ApplicationController
   end
 
   def edit
+    @snippet = Snippet.where(:code_id=>params[:id]).last
+  end
+
+  def edit_commit
+    pwd = Code.find(params[:snippet][:code_id]).password
+    if not validate(params[:code][:password], pwd)
+      redirect_to "/code/show/#{params[:snippet][:code_id]}"
+      return
+    end
     @snippet = Snippet.new
-    @snippet[:description] = "Hello, World"
-    @snippet[:name] = "Name"
-    @snippet[:source] = "puts "
-  end
-
-  def delete
-  end
-
-  def test
-    @codes = Code.all
+    @snippet = get_snippet(params[:snippet], params[:snippet][:code_id], params[:snippet][:version].to_i + 1)
+    @snippet.save
+    redirect_to "/code/show/#{@snippet[:code_id]}"
   end
 
 end

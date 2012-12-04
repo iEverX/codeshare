@@ -17,9 +17,7 @@
                 <span class="span2">Page</span>
                 <%= text_field :code, :page, :class=>"span3", :placeholder=>"Personal Page(optional)" %>
                 <span class="span2">Password</span>
-                <%= text_field :code, :password, :class=>"span3", :placeholder=>"To manage code" %>
-                <span class="span2">Password Again</span>
-                <%= text_field :cf, :cf,:class=>"span3", :placeholder=>"Must be the same" %>
+                <%= text_field :code, :password, :class=>"span3", :placeholder=>"To manage code", :value=>"" %>
                 <p class="span4">
                     <input class="btn-primary btn-large span2" type="submit" value="Commit" />
                     <input class="btn-primary btn-large span2" type="reset" value="Reset" />
@@ -29,4 +27,3 @@
     <% end %>
     </div>
 </div>
-

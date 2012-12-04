@@ -4,10 +4,12 @@ CodeShare::Application.routes.draw do
   root :to => 'home#index'
   
   match "/about" => "home#about"
+  match "/list" => "home#list"
 
   match "/share" => "code#share"
   match "/code/new" => "code#new"
 
+  match "/code/show" => "code#show"
   match "/code/show/:id" => "code#show", :as => "show"
 
   match "/code/:id/version" => "code#versions", :as => "versions"
@@ -15,10 +17,8 @@ CodeShare::Application.routes.draw do
 
   match "/comment/new/:id" => "comment#new"
   match "/code/edit/:id" => "code#edit", :as => "edit"
-
-  match "/test" => "code#test"
-  
-  
+  match "/code/edit_commit" => "code#edit_commit"
+ 
 end
   # The priority is based upon order of creation:
   # first created -> highest priority.

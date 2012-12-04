@@ -4,14 +4,16 @@
             <div class="span12">
                 <% if @snippet %>
                 <div class="show-code">
-                    <h2><%= @snippet[:name] %></h2>
+                    <h2><%= @snippet[:name] %>
                     <% if !params[:code_id] %>
-                        <span class="edit_link"><%= link_to "Edit", edit_url(params[:id]) %></span>
-                    <% end %>
+                        <small><%= link_to "Edit", edit_url(params[:id]) %></small>
+                    <% else %>
+                        <small><%= link_to "Lastest Version", show_url(params[:code_id]) %></small>
+                    <% end %></h2>
                     <p><small>Description</small> <%= @snippet[:description] %></p>
                     <p><small>Author</small> 
                         <% if @code[:page] %>
-                        <%= link_to @code[:author], @code[:page] %>
+                        <%= link_to @code[:author], @code[:page], :rel=>"nofollow" %>
                         <% else %>
                         <%= @code[:author] %>
                         <% end %>
@@ -34,9 +36,9 @@
                             <% if @comments %>
                                 <% @comments.each_with_index do |c, index| %>
                                     <p>
-                                        <%= gravatar_for c[:nick], :size=>16 %>
+                                        <%= gravatar_for c[:email], :size=>16 %>
                                         <% if c[:page] %>
-                                            <%= link_to c[:nick], c[:page] %>
+                                            <%= link_to c[:nick], c[:page], :rel=>"nofollow" %>
                                         <% else %>
                                             <%= c[:nick] %>
                                         <% end %>
@@ -45,7 +47,7 @@
                                     <p>
                                         <small>Post at</small> <%= c[:created_at] %> <br />
                                     </p>
-                                    <p class="comment_content"><%= c[:content] %></p>
+                                    <div class="comment_content"><%= markdown(c[:content]) %></div>
                                     <hr />
                                 <% end %>
                             <% else %>

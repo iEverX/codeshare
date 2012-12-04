@@ -23,10 +23,10 @@
                 <h2 class="info">Author Info</h2>
                 <p class="info">
                     <% if @code[:page] %>
-                    <a href=<%= @code[:page] %>><%= gravatar_for @code[:author], :size=>48 %></a><br />
+                    <a href=<%= @code[:page] %>><%= gravatar_for @code[:email], :size=>48 %></a><br />
                     <%= link_to @code[:author], @code[:page] %>
                     <% else %>
-                    <%= gravatar_for @code[:author], :size=>48 %><br />
+                    <%= gravatar_for @code[:email], :size=>48 %><br />
                     <%= @code[:author] %>
                     <% end %>
                 </p>

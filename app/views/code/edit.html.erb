@@ -1,12 +1,23 @@
 <div class="row">
     <div class="span12">
-    <%= form_tag({:action=>"new", :controller=>"code"}, :name=>"code", :method=>"post", :multipart=>"true") do %>
+    <%= form_tag({:action=>"edit_commit", :controller=>"code"}, :method=>"post", :multipart=>"true") do %>
         <div class="row">
             <div class="span7">
                 <h2>The Code</h2>
-                <%= text_field :snippet, :description, :class=>"span7", :placeholder=>"Description of the code" %>
-                <%= text_field :snippet, :name, :class=>"span4", :placeholder=>"Name this code" %>
-                <%= text_area :snippet, :source, :class=>"code-write span7", :placeholder=>"Your code", :rows=>"15" %>
+                <div class="row">
+                    <div class="span7 note">Passwor, if null or wrong, the code will not change</div>
+                    <div class="span3">
+                        <%= text_field :code, :password, :class=>"span3", :placeholder=>"Password" %>
+                    </div>
+                </div>
+                
+                <%= text_field :snippet, :description, :class=>"span7" %>
+                <%= text_field :snippet, :name, :class=>"span4" %>
+                <%= text_area :snippet, :source, :class=>"code-write span7", :rows=>"15" %>
+                <%= text_field :snippet, :code_id, :class=>"none" %>
+                <%= text_field :snippet, :version, :class=>"none" %>
+                <input type="submit" class="btn-primary span3" value="Commit" />
+                <input type="reset" class="btn-primary span2" value="Cancel" />
             </div>
         </div>
     <% end %>

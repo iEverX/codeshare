@@ -1,0 +1,30 @@
+<div class="page-body">
+    <h1>The Code List</h1>
+    <hr />
+    <div class="row part_title">
+        <div class="span1">ID</div>
+        <div class="span2">Author</div>
+        <div class="span2">Name</div>
+        <div class="span7">Description</div>
+    </div>
+    <hr />
+    <% @codes.each do |snippet, code| %>
+    <div class="row">
+        <div class="span1">
+            <%= link_to code[:id], show_url(code[:id]) %>
+        </div>
+        <div class="span2">
+            <%= gravatar_for code[:email], :size=>16 %>
+            <% if code[:page] %>
+                <%= link_to code[:author], code[:page], :rel=>"nofollow" %>
+            <% else %>
+                <%= code[:author] %>
+            <% end %>
+        </div>
+        <div class="span2"><%= snippet[:name] %></div>
+        <div class="span7"><%= snippet[:description] %></div>
+    </div>
+     <hr class="index_hr" />
+    <% end %>
+    
+</div>
