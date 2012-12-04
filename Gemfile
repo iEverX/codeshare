@@ -8,7 +8,8 @@ gem 'rails', '3.2.8'
 group :development, :test do
   gem 'sqlite3'
 end
-gem 'postgres-pr'
+gem 'pg'
+gem 'activerecord-postgresql-adapter'
 #gem 'sqlite3'
 
 gem 'json'
